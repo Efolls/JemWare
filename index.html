@@ -1,1 +1,86 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            max-width: 300px;
+            margin: auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            text-align: center;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p id="errorMessage" style="color:red;"></p>
+    </div>
+
+    <script>
+        // Example of CSV-like data in JavaScript
+        const usersCSV = `
+            username1,password1
+            username2,password2
+            username3,password3
+        `;
+
+        // Function to parse CSV data
+        function parseCSV(data) {
+            return data.trim().split('\n').map(row => row.split(','));
+        }
+
+        // Event listener for the login form
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const users = parseCSV(usersCSV);
+
+            let isValid = false;
+            for (let user of users) {
+                if (user[0] === username && user[1] === password) {
+                    isValid = true;
+                    break;
+                }
+            }
+
+            if (isValid) {
+                window.location.href = 'home.html';
+            } else {
+                document.getElementById('errorMessage').textContent = 'Invalid username or password.';
+            }
+        });
+    </script>
+</body>
+</html>
