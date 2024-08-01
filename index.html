@@ -73,7 +73,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
     let isValid = false;
     for (let user of usersData) {
-        if (user[0] === sha256(username);username && user[1] === sha256(password)) {
+        if (user[0] === sha256(username) && user[1] === sha256(password)) {
             isValid = true;
             break;
         }
