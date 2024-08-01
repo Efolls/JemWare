@@ -66,7 +66,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const users = parseCSV(usersCSV);
-            Console.Log(users);
+            console.log(users);
             let isValid = false;
             for (let user of users) {
                 if (user[0] === username && user[1] === password) {
